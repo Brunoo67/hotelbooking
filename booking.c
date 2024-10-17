@@ -27,7 +27,8 @@ void adicionarHotel(){
         getchar();
         fgets(hoteis[numHoteis].nome, sizeof(hoteis[numHoteis].nome), stdin);  
         printf("Escreva o número de quartos disponíveis: ");  
-        scanf("%d", &hoteis[numHoteis].quartosDisponiveis);  
+        scanf("%d", &hoteis[numHoteis].quartosDisponiveis);
+        hoteis[numHoteis].hotelId = numHoteis;  
         numHoteis++;  
         printf("Hotel adicionado com sucesso!\n");
     } else {  
