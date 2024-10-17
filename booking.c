@@ -48,6 +48,34 @@ void listarHoteis() {
     }
 }
 
+void reservarQuarto() {
+    listarHoteis();
+
+    if (numHoteis == 0) return;
+
+    int hotelId;
+    printf("Escolha o hotel desejado pelo ID: ");
+    scanf("%d", &hotelId);
+
+    if (hotelId >= numHoteis || hotelId < 0) {
+        printf("Esse hotel não existe ou não está cadastrado");
+    } else if (hoteis[hotelId].quartosDisponiveis <= 0) {
+        printf("Esse hotel está cheio!");
+    } else {
+        printf("Deseja usar qual nome na reserva ? ");
+        scanf("%s", reservas[numReservas].nomeCliente);
+        reservas[numReservas].hotelId = hotelId;
+        reservas[numReservas].id = numReservas;
+        hoteis[hotelId].quartosDisponiveis--;
+        numReservas++; 
+        printf("Reserva feita com sucesso!\n\n");
+        printf("Nome da reserva: %s\n", reservas[numReservas - 1].nomeCliente);
+        printf("ID da reserva: %d\n", reservas[numReservas - 1].id);
+
+    }
+
+}
+
 int main() {
     int opcao;  
     do {  
@@ -63,7 +91,7 @@ int main() {
         switch (opcao) {  
             case 1: adicionarHotel(); break;  
             case 2: listarHoteis(); break;  
-            case 3: printf("Função em desenvolvimento...\n"); break;  
+            case 3: reservarQuarto(); break;  
             case 4: printf("Função em desenvolvimento...\n"); break;  
             case 0: printf("Saindo...\n"); break;  
             default: printf("Opção inválida!\n"); break;  
